@@ -1,0 +1,28 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 58081
+
+# Kafka配置
+spring:
+  kafka:
+    # 集群配置
+    bootstrap-servers: 192.168.31.138:9092
+    # 消费者配置
+    consumer:
+      # 消费者组
+      group-id: groupA
+      # 自动提交
+      enable-auto-commit: false
+      # 当没有初始offset或offset超出范围时该如何设置offset
+      # latest表示只消费新产生的数据，earliest表示从头开始消费，none表示抛出异常
+      auto-offset-reset: latest
+      # 每次消费多少条消息
+      max-poll-records: 5
+
+      listener:
+        # 设置批量消费
+        batch: false
+        # 若topic不存在，项目启动报错（关闭）
+        missing-topics-fatal: false
+        # 设置并发消费的线程数，不能超过partitions的大小
+        concurrency: 3

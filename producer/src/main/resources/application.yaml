@@ -1,0 +1,23 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 58080
+
+spring:
+  # Kafka配置
+  kafka:
+    # 集群配置
+    bootstrap-servers: 192.168.31.138:9092
+    # 生产者配置
+    producer:
+      # 重试次数
+      retries: 3
+      # ack（可选0、1、all/-1）
+      acks: -1
+      # 批量大小（字节）
+      batch-size: 1024
+      # 提交延时（ms）
+      linger: 1000
+      # 缓冲区大小（默认32M）
+      buffer-memory: 40960
+      # 事务前缀
+      transaction-id-prefix: tran-id-
